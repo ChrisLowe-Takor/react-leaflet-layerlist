@@ -1,10 +1,10 @@
 {
-  "name": "react-leaflet-styled-layerlist",
+  "name": "react-leaflet-layerlist",
   "version": "1.0.0",
-  "description": "A styled layerlist control for react leaflet",
+  "description": "A layerlist control for react leaflet",
   "author": "ChrisLowe-Takor",
   "license": "MIT",
-  "repository": "ChrisLowe-Takor/react-leaflet-styled-layerlist",
+  "repository": "ChrisLowe-Takor/react-leaflet-layerlist",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
@@ -22,9 +22,11 @@
     "deploy": "gh-pages -d example/build"
   },
   "peerDependencies": {
+    "leaflet": "^1.3.4",
     "prop-types": "^15.5.4",
     "react": "^15.0.0 || ^16.0.0",
-    "react-dom": "^15.0.0 || ^16.0.0"
+    "react-dom": "^15.0.0 || ^16.0.0",
+    "react-leaflet": "^2.1.3"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
