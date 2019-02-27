@@ -43,6 +43,7 @@ L.Control.LayerListControl = L.Control.extend({
 		L.DomEvent.disableClickPropagation(this._openButton);
 		L.DomEvent.disableClickPropagation(this._closeButton);
 		L.DomEvent.disableClickPropagation(this._layerListContainer);
+		L.DomEvent.disableScrollPropagation(this._layerListContainer);
 		return this._layerListContainer;
 	},
 	onRemove: function(map) {

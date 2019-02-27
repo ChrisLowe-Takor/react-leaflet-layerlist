@@ -74,6 +74,7 @@ div.layer-list-container.open {
 	border-radius: 4px;
 	background: white;
 	transition: 0.35s all;
+	overflow-y: scroll;
 }
 
 div.layer-list-container.closed {
