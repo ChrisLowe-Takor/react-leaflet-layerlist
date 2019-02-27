@@ -15,6 +15,7 @@ L.Control.LayerListControl = L.Control.extend({
 	_isOpen: false,
 	_layerlistItems: [],
 	_children: [],
+	_openButton: null,
 	_closeButton: null,
 	initialize: function(element) {
 		this.options.position = element.position;
@@ -22,10 +23,17 @@ L.Control.LayerListControl = L.Control.extend({
 		this._layerListItems = new Array();
 	},
 	onAdd: function(map) {
-		this._layerListContainer = L.DomUtil.create('div', 'layer-list-button closed');
 
-		L.DomEvent.on(this._layerListContainer, 'click', () => {
+		this._layerListContainer = L.DomUtil.create('div', 'layer-list-container closed');
+		this._openButton = L.DomUtil.create('div', 'layer-list-open-button visible', this._layerListContainer);
+		this._closeButton = L.DomUtil.create('div', 'layer-list-close-button hidden', this._layerListContainer);
+		
+		L.DomEvent.on(this._openButton, 'click', () => {
 			this.open(map);
+		});
+
+		L.DomEvent.on(this._closeButton, 'click', () => {
+			this.close(map);
 		});
 
 		L.DomEvent.on(this._map, 'click', () => {
@@ -34,38 +42,57 @@ L.Control.LayerListControl = L.Control.extend({
 			}
 		});
 
+		L.DomEvent.disableClickPropagation(this._openButton);
+		L.DomEvent.disableClickPropagation(this._closeButton);
 		L.DomEvent.disableClickPropagation(this._layerListContainer);
 		return this._layerListContainer;
+
+		// this._layerListContainer = L.DomUtil.create('div', 'layer-list-button closed');
+
+		// L.DomEvent.on(this._layerListContainer, 'click', () => {
+		// 	this.open(map);
+		// });
+
+		// L.DomEvent.on(this._map, 'click', () => {
+		// 	if (this._isOpen) {
+		// 		this.close(map);
+		// 	}
+		// });
+
+		// L.DomEvent.disableClickPropagation(this._layerListContainer);
+		// return this._layerListContainer;
 	},
 	onRemove: function(map) {
 		// Do nothing
 	},
 	open: function(map) {
 		if (!this._isOpen) {
+			L.DomUtil.removeClass(this._openButton, 'visible');
+			L.DomUtil.addClass(this._openButton, 'hidden');
+
+			L.DomUtil.removeClass(this._closeButton, 'hidden');
+			L.DomUtil.addClass(this._closeButton, 'visible');
+
 			L.DomUtil.removeClass(this._layerListContainer, 'closed');
 			L.DomUtil.addClass(this._layerListContainer, 'open');
-			this._showCloseButton();
+			
 			this._showLayerlistElements(map);
 			this._isOpen = true;			
 		}
 	},
 	close: function(map) {
+		L.DomUtil.removeClass(this._openButton, 'hidden');
+		L.DomUtil.addClass(this._openButton, 'visible');
+
+		L.DomUtil.removeClass(this._closeButton, 'visible');
+		L.DomUtil.addClass(this._closeButton, 'hidden');
+
 		L.DomUtil.removeClass(this._layerListContainer, 'open');
 		L.DomUtil.addClass(this._layerListContainer, 'closed');
 		this._removeLayerlistElements(map);
-		L.DomUtil.remove(this._closeButton);
-		this._closeButton = null;
+
 		this._isOpen = false;
 
-	},
-	_showCloseButton: function() {
-		this._closeButton = L.DomUtil.create('a', 'close-button', this._layerListContainer);
-		this._closeButton.innerHTML = 'Close';
-		L.DomEvent.disableClickPropagation(this._closeButton);
-		L.DomEvent.on(this._closeButton, 'click', (ev) => {
-			L.DomEvent.stopPropagation(ev);
-			this.close(this._map);
-		})
 	},
 	_showLayerlistElements: function(map) {
 		for (var index = 0; index < this._children.length; index++) {
