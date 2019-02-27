@@ -1,13 +1,11 @@
 import React, { Children, Component, cloneElement, Fragment } from 'react';
-var ReactDOM = require('react-dom');
-import { createPortal } from "react-dom";
 import PropTypes from 'prop-types';
-import './styles.css';
-
 import { MapControl, withLeaflet } from 'react-leaflet';
-
 import L from 'leaflet';
 
+var ReactDOM = require('react-dom');
+
+import './styles.css';
 
 
 L.Control.LayerListControl = L.Control.extend({
@@ -46,21 +44,6 @@ L.Control.LayerListControl = L.Control.extend({
 		L.DomEvent.disableClickPropagation(this._closeButton);
 		L.DomEvent.disableClickPropagation(this._layerListContainer);
 		return this._layerListContainer;
-
-		// this._layerListContainer = L.DomUtil.create('div', 'layer-list-button closed');
-
-		// L.DomEvent.on(this._layerListContainer, 'click', () => {
-		// 	this.open(map);
-		// });
-
-		// L.DomEvent.on(this._map, 'click', () => {
-		// 	if (this._isOpen) {
-		// 		this.close(map);
-		// 	}
-		// });
-
-		// L.DomEvent.disableClickPropagation(this._layerListContainer);
-		// return this._layerListContainer;
 	},
 	onRemove: function(map) {
 		// Do nothing
@@ -97,11 +80,10 @@ L.Control.LayerListControl = L.Control.extend({
 	_showLayerlistElements: function(map) {
 		for (var index = 0; index < this._children.length; index++) {
 			var item = this._children[index];
-			var container = L.DomUtil.create('div', 'container', this._layerListContainer);
+			var container = L.DomUtil.create('div', 'layer-list-item-container item-' + index, this._layerListContainer);
 			this._layerListItems.push(container);
 			const el = ReactDOM.createPortal(item, container);
 			ReactDOM.render(el, container);
-			
 		}
 	},
 	_removeLayerlistElements: function(map) {

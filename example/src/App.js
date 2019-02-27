@@ -24,15 +24,35 @@ export default class App extends Component {
 					<ReactLeafletLayerList>
 
 						<LayerListItem>
-							<div className="test-div">
-								<h2>Some title</h2>
+							<div>
+								<h2>Elements in a div</h2>
 								<p>With nested stuff</p>
 							</div>
 						</LayerListItem>
 
 						<LayerListItem>
+							<h2>Element in a div</h2>
+						</LayerListItem>
+
+						<LayerListItem>
+							Bare string in a div
+						</LayerListItem>
+
+						<LayerListItem>
+							<ul>
+								<li>List</li>
+								<li>List</li>
+								<li>List</li>
+								<li>List</li>
+								<li>List</li>
+								<li>List</li>
+							</ul>
+						</LayerListItem>
+
+						<LayerListItem>
 							<div>
-								<h2>My Fancy Title</h2>
+								<h2>Image in a div</h2>
+								<img src="https://i.imgur.com/BSBVtHJ.jpg" width={200} />
 							</div>
 						</LayerListItem>
 							

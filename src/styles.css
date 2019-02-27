@@ -8,7 +8,8 @@ div.layer-list-open-button {
     text-decoration: none;
     background: white;
     border-radius: 4px;
-	display: inline-block;
+	display: block;
+	float: right;
 }
 
 div.layer-list-open-button:before {
@@ -42,7 +43,8 @@ div.layer-list-close-button {
     text-decoration: none;
     background: white;
     border-radius: 4px;
-	display: inline-block;
+	display: block;
+	float: right;
 }
 
 div.layer-list-close-button:before {
@@ -66,6 +68,13 @@ div.layer-list-close-button.visible {
 	display: block;
 }
 
+div.layer-list-container.open {
+	width: 18vw;
+	height: 98vh;
+	border-radius: 4px;
+	background: white;
+	transition: 0.35s all;
+}
 
 div.layer-list-container.closed {
 	width: 32px;
@@ -77,21 +86,22 @@ div.layer-list-container.closed {
 	cursor: pointer;
 }
 
-div.layer-list-container.open {
-	width: 18vw;
-	height: 98vh;
-	border-radius: 4px;
-	background: white;
-	transition: 0.35s all;
+div.layer-list-item-container {
+	animation: 0.1s fadeIn;
+	animation-fill-mode: forwards;
+  	visibility: hidden;
 }
 
-a.close-button {
-	text-align: right;
-    width: 100%;
-    margin: 0 auto;
-    font-size: 20px;
-    display: block;
-    right: 7px;
-	position: relative;
-	cursor: pointer;
+div.layer-list-item-container.item-0 {
+	margin-top: 32px;
 }
+
+/** The 0.1 second delay for visible prevents a slight flicker of content as the layer list opens **/
+@keyframes fadeIn {
+	99% {
+	  visibility: hidden;
+	}
+	100% {
+	  visibility: visible;
+	}
+  }
