@@ -15,8 +15,10 @@ div.layer-list-button {
 	border-radius: 4px;
 	background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAB60lEQVRIie3VPWtUQRTG8d9GjQaJLopiFDVC7LSzESWIhYiCKFiIlZWFRbCxEPwINhY2AUX8APEbCDZiExLsBFEjKeIL+AYiUXct7lyYvd65mZVoBH1gmOGcPfM/M+fcWf5lPUA3Gm+wM/iuohPsizgV7OP4XIm7mQMbiNbjFd8GrAvrLWiF9Rq0w7qNoUrcoRxwrDLjwxjFpkqCu4J9eyVuW7BfDPGzObDVNbZ5vKjYOniZ2GMhzK9zgKXiq36lqN/HfjaoxPedAIxgzy9CS+1T9Mbfq1a0vqZolAlFTZu0GacVHbxVUZ5ZTOFpv0mU3+nuJRK9jPd6v91yfMMk1vcDLoNHG6C3EsDqmMHGXPCXEDSS8E9kQssxlQs+hnMJX1v6em80wI/kwlO60LC5Bt+d1IbxA9J04oMJ+6cwv42SyInrUVON7+k9yWRij/OV373LATd19W31V/khSrpT43+egg3U2M4qano8ss0k4ofDPKj3MSo1nQLHqjvRgeDbofgDqfo7uKT+tF2cScFWReshfMdcGNOKB2NR0UTDfv6Tb+Gk+tM+wpUlj5uhQdyX/4AcXQ5oqbWKjk5dbRdfwzyPseWEw35cx0M8w2PcxQnsDdDfBm/SWARfCImuCHzuT4JL+BNFSf5rZfQD0s7CMRfyzDcAAAAASUVORK5CYII=");
 	background-color: rgb(255, 255, 255);
+	background-repeat: no-repeat;
 	outline: none;
-	transition: 0.2s all;
+	transition: 0.35s all;
+	cursor: pointer;
 }
 
 div.layer-list-button.closed {
@@ -25,7 +27,18 @@ div.layer-list-button.closed {
 }
 
 div.layer-list-button.open {
-	width: 128px;
-	height: 500px;
+	width: 18vw;
+	height: 98vh;
 	background: white;
+}
+
+a.close-button {
+	text-align: right;
+    width: 100%;
+    margin: 0 auto;
+    font-size: 20px;
+    display: block;
+    right: 7px;
+	position: relative;
+	cursor: pointer;
 }
