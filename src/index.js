@@ -1,4 +1,4 @@
 import ReactLeafletLayerList from './react-leaflet-layerlist';
-import { GenericLayerListItem, LayerListHeader } from './react-leaflet-layerlist';
+import LayerListItem from './layer-list-item';
 
-export { ReactLeafletLayerList, GenericLayerListItem, LayerListHeader };
+export { ReactLeafletLayerList, LayerListItem };

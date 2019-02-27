@@ -1,4 +1,5 @@
 import React, { Children, Component, cloneElement, Fragment } from 'react';
+var ReactDOM = require('react-dom');
 import { createPortal } from "react-dom";
 import PropTypes from 'prop-types';
 import './styles.css';
@@ -7,52 +8,6 @@ import { MapControl, withLeaflet } from 'react-leaflet';
 
 import L from 'leaflet';
 
-
-class LayerListItem extends React.Component {
-	constructor(props) {
-		super(props);
-		if (this.constructor === LayerListItem) {
-			throw new TypeError('LayerListItem is abstract');
-		}
-	}
-	element;
-	tagName;
-	className;
-	container;
-	onAdd;
-	onRemove;
-	onClick;
-	onMouseEnter;
-	onMouseLeave;
-	onMouseOver;
-}
-
-export class LayerListHeader extends LayerListItem {
-	_title;
-	constructor(title, className) {
-		super();
-		this._title = title;
-		this.tagName = 'p'
-		this.className = className;
-	}
-	onAdd = function() {
-		this.element.innerHTML = this._title;
-	}
-}
-
-export class GenericLayerListItem extends LayerListItem {
-
-	constructor(tagName, className, onAdd, onRemove, onClick, onMouseEnter, onMouseLeave, onMouseOver) {
-		super();
-		this.tagName = tagName;
-		this.className = className;
-		this.onAdd = onAdd;
-		this.onRemove = onRemove;
-		this.onClick = onClick;
-		this.onMouseEnter = onMouseEnter;
-		this.onMouseLeave = onMouseLeave;
-	}
-}
 
 
 L.Control.LayerListControl = L.Control.extend({
@@ -113,40 +68,14 @@ L.Control.LayerListControl = L.Control.extend({
 		})
 	},
 	_showLayerlistElements: function(map) {
-		//let container = L.DomUtil.create('div', 'layer-list-container', this._layerListContainer);
-		this._renderItemRecursive(this._children[0], this._layerListContainer);
-
-
-		// for (var index = 0; index < this._children.length; index++) {
-		// 	var item = this._children[index];
-		// 	this._renderItemRecursive(item, this._layerListContainer);
-		// }
-	},
-	_renderItemRecursive: function(item, parent) {
-
-		console.log(item);
-		if (item instanceof Array) {
-			console.log('Its an array!');
-			for (var index = 0; index < item.length; item++) {
-				this._renderItemRecursive(item[index], parent);
-			}
-		} else {		
-
-			var tagName = item.props.children.type;
-			var className = item.props.className;
-			var content = item.props.children;
-			console.log('Rendering: <' + tagName + '>' + content);
-
-			let element = L.DomUtil.create(tagName, className, parent);
-			this._layerListItems.push(element);
-
-			if (typeof content === 'object') {
-				this._renderItemRecursive(content, element);
-			} else {
-				element.innerHTML = content;
-			}
+		for (var index = 0; index < this._children.length; index++) {
+			var item = this._children[index];
+			var container = L.DomUtil.create('div', 'container', this._layerListContainer);
+			this._layerListItems.push(container);
+			const el = ReactDOM.createPortal(item, container);
+			ReactDOM.render(el, container);
+			
 		}
-
 	},
 	_removeLayerlistElements: function(map) {
 		for (var index = 0; index < this._layerListItems.length; index++) {

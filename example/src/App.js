@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
 import { Map, TileLayer, ZoomControl } from 'react-leaflet'
-import { ReactLeafletLayerList, GenericLayerListItem, LayerListHeader } from 'react-leaflet-styled-layerlist'
+import { ReactLeafletLayerList, LayerListItem } from 'react-leaflet-styled-layerlist'
 
 export default class App extends Component {
 
@@ -22,22 +23,23 @@ export default class App extends Component {
 
 					<ReactLeafletLayerList>
 
-						<LayerListHeader>
-							<div>
+						<LayerListItem>
+							<div className="test-div">
 								<h2>Some title</h2>
+								<p>With nested stuff</p>
 							</div>
-						</LayerListHeader>
+						</LayerListItem>
 
-						<LayerListHeader className="my-header">
+						<LayerListItem>
 							<div>
 								<h2>My Fancy Title</h2>
 							</div>
-						</LayerListHeader>
+						</LayerListItem>
 							
 
-						<LayerListHeader>
+						<LayerListItem>
 							<p>My thing</p>
-						</LayerListHeader>
+						</LayerListItem>
 					
 					</ReactLeafletLayerList>
 		
