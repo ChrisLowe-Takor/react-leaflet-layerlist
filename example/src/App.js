@@ -1,10 +1,9 @@
-import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
+import * as React from 'react'
 import { Map, TileLayer, ZoomControl } from 'react-leaflet'
 import { ReactLeafletLayerList, LayerListItem } from 'react-leaflet-styled-layerlist'
 import { Container, Row, Col, Button } from 'reactstrap';
 
-export default class App extends Component {
+export default class App extends React.Component {
 
 	render () {
 		return (
@@ -72,7 +71,7 @@ export default class App extends Component {
 						<LayerListItem>
 							<div>
 								<h2>Image in a div</h2>
-								<img src="https://i.imgur.com/BSBVtHJ.jpg" width={200} />
+								<img alt="Sample" src="https://i.imgur.com/BSBVtHJ.jpg" width={200} />
 							</div>
 						</LayerListItem>
 							

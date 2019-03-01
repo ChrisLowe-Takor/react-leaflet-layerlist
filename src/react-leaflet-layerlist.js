@@ -1,4 +1,3 @@
-import React, { Children, Component, cloneElement, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { MapControl, withLeaflet } from 'react-leaflet';
 import L from 'leaflet';
