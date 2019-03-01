@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { Map, TileLayer, ZoomControl } from 'react-leaflet'
 import { ReactLeafletLayerList, LayerListItem } from 'react-leaflet-styled-layerlist'
+import { Container, Row, Col, Button } from 'reactstrap';
 
 export default class App extends Component {
 
@@ -22,6 +23,25 @@ export default class App extends Component {
 
 
 					<ReactLeafletLayerList>
+
+						
+
+						<LayerListItem>
+							<Container>
+								<Row>
+									<Col md={6}>reactstrap</Col>
+									<Col md={6}>enabled</Col>
+								</Row>
+							</Container>
+						</LayerListItem>
+
+						<LayerListItem>
+							<Container>
+								<Row>
+									<Button onClick={() => alert('clicked!') }>Button</Button>
+								</Row>
+							</Container>
+						</LayerListItem>
 
 						<LayerListItem>
 							<div>
