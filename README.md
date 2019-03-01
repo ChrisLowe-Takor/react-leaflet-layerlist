@@ -23,24 +23,24 @@ import { Map, TileLayer } from 'react-leaflet'
 import { ReactLeafletLayerList, LayerListItem } from 'react-leaflet-styled-layerlist'
 
 class Example extends Component {
-	render () {
-		return (
-			<Map
-				center={[44.635, 22.653]}
-				zoom={12}>
+  render () {
+    return (
+      <Map
+        center={[44.635, 22.653]}
+        zoom={12}>
 
-				<TileLayer
-					attribution=""
-					url="https://mt0.google.com/vt/lyrs=s&x={x}&y={y}&z={z}"/>
+        <TileLayer
+          attribution=""
+          url="https://mt0.google.com/vt/lyrs=s&x={x}&y={y}&z={z}"/>
 
-				<ReactLeafletLayerList>
-					<LayerListItem>
-						<h2>My awesome layerlist!</h2>
-					</LayerListItem>
-				</ReactLeafletLayerList>
-			</Map>
-		)
-	}
+        <ReactLeafletLayerList>
+          <LayerListItem>
+            <h2>My awesome layerlist!</h2>
+          </LayerListItem>
+        </ReactLeafletLayerList>
+      </Map>
+    )
+  }
 }
 ```
 
