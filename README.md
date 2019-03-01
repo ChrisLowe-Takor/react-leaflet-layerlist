@@ -23,23 +23,24 @@ import { Map, TileLayer } from 'react-leaflet'
 import { ReactLeafletLayerList, LayerListItem } from 'react-leaflet-styled-layerlist'
 
 class Example extends Component {
-  render () {
-    return (
-      <Map
-		center={[44.635, 22.653]}
-		zoom={12}>
+	render () {
+		return (
+			<Map
+				center={[44.635, 22.653]}
+				zoom={12}>
 
-		<TileLayer
-				attribution=""
-				url="https://mt0.google.com/vt/lyrs=s&x={x}&y={y}&z={z}"/>
-	
-		<ReactLeafletLayerList>
-			<LayerListItem>
-				<h2>My awesome layerlist!</h2>
-			</LayerListItem>
-		</ReactLeafletLayerList>
-    )
-  }
+				<TileLayer
+					attribution=""
+					url="https://mt0.google.com/vt/lyrs=s&x={x}&y={y}&z={z}"/>
+
+				<ReactLeafletLayerList>
+					<LayerListItem>
+						<h2>My awesome layerlist!</h2>
+					</LayerListItem>
+				</ReactLeafletLayerList>
+			</Map>
+		)
+	}
 }
 ```
 
@@ -57,12 +58,12 @@ class Example extends Component {
 Styles are applied by adding key-value pairs directly to the DOM so please use standard CSS keys and not React's.  For example, if you wanted a rounded open button you should use:
 
 ```jsx
-	<ReactLeafletLayerList
-		openButtonStyle={{
-			'width': '32px',
-			'height': '32px',
-			'border-radius':  '16px'
-		}}>
+<ReactLeafletLayerList
+	openButtonStyle={{
+		'width': '32px',
+		'height': '32px',
+		'border-radius':  '16px'
+}}>
 ```
 
 ## A word on LayerListItem
