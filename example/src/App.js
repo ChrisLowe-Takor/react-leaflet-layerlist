@@ -20,27 +20,7 @@ export default class App extends React.Component {
 				
 					<ZoomControl />
 
-					<ReactLeafletLayerList 
-						style={{
-							width: '900px',
-							height: '98vh',
-							background: 'black'
-						}}
-						openButtonStyle={{
-							width: '64px',
-							height: '64px',
-							'border-radius': '32px',
-							background: 'green'
-						}}
-						closeButtonStyle={{
-							width: '64px',
-							height: '64px',
-							'border-radius': '32px'
-						}}				
-
-						>
-
-						
+					<ReactLeafletLayerList>
 
 						<LayerListItem>
 							<Container>

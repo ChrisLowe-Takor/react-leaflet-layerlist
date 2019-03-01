@@ -137,7 +137,7 @@ class ReactLeafletLayerList extends MapControl {
 	}
 
 	createLeafletElement(props) {
-		return L.control.layerListControl({position: 'topright', style: props.style, openButtonStyle: props.openButtonStyle, ...props});
+		return L.control.layerListControl({position: props.position || 'topright', style: props.style, openButtonStyle: props.openButtonStyle, ...props});
 	}
 }
 
