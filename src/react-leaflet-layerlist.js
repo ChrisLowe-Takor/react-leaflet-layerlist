@@ -14,17 +14,37 @@ L.Control.LayerListControl = L.Control.extend({
 	_children: [],
 	_openButton: null,
 	_closeButton: null,
+	_openButtonStyle: null,
+	_closeButtonStyle: null,
+	_layerListStyle: null,
+	_style: null,
 	initialize: function(element) {
+		console.log(element);
 		this.options.position = element.position;
 		this._children = element.children;
 		this._layerListItems = new Array();
+		this._style = element.style;
+		this._openButtonStyle = element.openButtonStyle;
+		this._closeButtonStyle = element.closeButtonStyle;
 	},
 	onAdd: function(map) {
 
-		this._layerListContainer = L.DomUtil.create('div', 'layer-list-container closed');
+		this._layerListContainer = L.DomUtil.create('div', 'layer-list-container closed');		
 		this._openButton = L.DomUtil.create('div', 'layer-list-open-button visible', this._layerListContainer);
 		this._closeButton = L.DomUtil.create('div', 'layer-list-close-button hidden', this._layerListContainer);
 		
+		if (this._openButtonStyle) {
+			Object.keys(this._openButtonStyle).forEach(key => {
+				this._openButton.style[key] = this._openButtonStyle[key];
+			});
+		}
+
+		if (this._closeButtonStyle) {
+			Object.keys(this._closeButtonStyle).forEach(key => {
+				this._closeButton.style[key] = this._closeButtonStyle[key];
+			});
+		}
+
 		L.DomEvent.on(this._openButton, 'click', () => {
 			this.open(map);
 		});
@@ -58,7 +78,13 @@ L.Control.LayerListControl = L.Control.extend({
 
 			L.DomUtil.removeClass(this._layerListContainer, 'closed');
 			L.DomUtil.addClass(this._layerListContainer, 'open');
-			
+
+			if (this._style) {
+				Object.keys(this._style).forEach(key => {
+					this._layerListContainer.style[key] = this._style[key];
+				});
+			}
+
 			this._showLayerlistElements(map);
 			this._isOpen = true;			
 		}
@@ -74,8 +100,13 @@ L.Control.LayerListControl = L.Control.extend({
 		L.DomUtil.addClass(this._layerListContainer, 'closed');
 		this._removeLayerlistElements(map);
 
-		this._isOpen = false;
+		if (this._style) {
+			Object.keys(this._style).forEach(key => {
+				this._layerListContainer.style[key] = null;
+			});
+		}
 
+		this._isOpen = false;
 	},
 	_showLayerlistElements: function(map) {
 		for (var index = 0; index < this._children.length; index++) {
@@ -106,7 +137,7 @@ class ReactLeafletLayerList extends MapControl {
 	}
 
 	createLeafletElement(props) {
-		return L.control.layerListControl({position: 'topright', ...props});
+		return L.control.layerListControl({position: 'topright', style: props.style, openButtonStyle: props.openButtonStyle, ...props});
 	}
 }
 
@@ -114,5 +145,17 @@ export default withLeaflet(ReactLeafletLayerList);
 
 
 ReactLeafletLayerList.propTypes = {
-	position: PropTypes.oneOf(['topright', 'topleft', 'bottomright', 'bottomleft'])
+	position: PropTypes.oneOf(['topright', 'topleft', 'bottomright', 'bottomleft']),
+	style: PropTypes.objectOf(PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.number,
+	])),
+	openButtonStyle: PropTypes.objectOf(PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.number,
+	])),
+	closeButtonStyle: PropTypes.objectOf(PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.number,
+	]))
 };
