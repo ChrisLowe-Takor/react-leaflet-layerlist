@@ -20,7 +20,13 @@ export default class App extends React.Component {
 				
 					<ZoomControl />
 
-					<ReactLeafletLayerList>
+					<ReactLeafletLayerList position="topright">
+						<LayerListItem>
+							<div>foo</div>
+						</LayerListItem>
+					</ReactLeafletLayerList>
+
+					<ReactLeafletLayerList position="topleft">
 
 						<LayerListItem>
 							<Container>

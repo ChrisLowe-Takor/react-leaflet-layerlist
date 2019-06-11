@@ -17,10 +17,11 @@ L.Control.LayerListControl = L.Control.extend({
 	_openButtonStyle: null,
 	_closeButtonStyle: null,
 	_layerListStyle: null,
+	_position: null,
 	_style: null,
 	initialize: function(element) {
 		console.log(element);
-		this.options.position = element.position;
+		this._position = element.position;
 		this._children = element.children;
 		this._layerListItems = new Array();
 		this._style = element.style;
@@ -29,6 +30,7 @@ L.Control.LayerListControl = L.Control.extend({
 	},
 	onAdd: function(map) {
 
+		this.options.position  = this._position;
 		this._layerListContainer = L.DomUtil.create('div', 'layer-list-container closed');		
 		this._openButton = L.DomUtil.create('div', 'layer-list-open-button visible', this._layerListContainer);
 		this._closeButton = L.DomUtil.create('div', 'layer-list-close-button hidden', this._layerListContainer);
