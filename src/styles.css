@@ -70,11 +70,12 @@ div.layer-list-close-button.visible {
 
 div.layer-list-container.open {
 	width: 25vw;
-	height: 98vh;
+	height: 100%;
 	border-radius: 4px;
 	background: white;
 	transition: 0.35s all;
 	overflow-y: scroll;
+	overflow-x: hidden;
 }
 
 div.layer-list-container.closed {
